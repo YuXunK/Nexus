@@ -3,47 +3,44 @@ package com.nexusget.nexuscontentplat.domain.Entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * @author nexus
- * @date "2023-06-25 14:30:00"
- * 用户实体类
+ * 评论实体类
  */
 
 @Data
-@TableName("user")
+@TableName("comment")
 @AllArgsConstructor
 @NoArgsConstructor
-public class user {
+public class comment {
     @TableId(type = IdType.AUTO)
+    private Long commentId;
+    /**
+     * 文章id
+     */
+    private Long articleId;
+    /**
+     * 自定义文章id，暴露返回
+     */
+    private String custom_article_id;
+    /**
+     * 用户id
+     */
     private Long userId;
     /**
-     * 用户名
+     * 评论内容
      */
-    @NotNull
-    private String userName;
+    private String content;
     /**
-     * 关联邮箱
-     */
-    private String email;
-    /**
-     * 密码
-     */
-    private String password;
-    /**
-     * 创建时间
+     * 发布时间
      */
     private String createdAt;
     /**
-     * 最后登录日期
+     * 更新时间
      */
-    private String lastLoginAt;
-    /**
-     * 管理员标识 0--super 1--admin 2--normal
-     */
-    private int isAdmin;
+    private String updatedAt;
 }
