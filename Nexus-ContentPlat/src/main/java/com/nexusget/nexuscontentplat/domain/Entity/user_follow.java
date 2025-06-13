@@ -1,29 +1,23 @@
 package com.nexusget.nexuscontentplat.domain.Entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.nexusget.nexuscontentplat.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * @author nexus
- * @ date 25/6/6
- * 标签类实体
- */
-
 @Data
-@TableName("tag")
+@TableName("user_follow")
 @AllArgsConstructor
 @NoArgsConstructor
-public class tag {
+@EqualsAndHashCode(callSuper = true)
+public class user_follow extends BaseEntity {
     @TableId(type = IdType.AUTO)
-    @TableField("tag_id")
-    private Long tagId;
-    /**
-     * 标签名
-     */
-    private String tagName;
+    private Long follow_recode_id;
+    private Long user_id;
+    private Long followed_user_id;
+    private String created_at;
 }

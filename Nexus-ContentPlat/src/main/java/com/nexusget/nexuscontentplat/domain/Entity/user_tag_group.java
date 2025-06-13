@@ -8,22 +8,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * @author nexus
- * @ date 25/6/6
- * 标签类实体
- */
-
 @Data
-@TableName("tag")
+@TableName("user_tag_group")
 @AllArgsConstructor
 @NoArgsConstructor
-public class tag {
+public class user_tag_group {
     @TableId(type = IdType.AUTO)
-    @TableField("tag_id")
-    private Long tagId;
-    /**
-     * 标签名
-     */
-    private String tagName;
+    private Long user_tag_gp_id;
+    private Long user_id;
+    @TableField("name")
+    private String group_name;
+    private Integer sort;
 }
