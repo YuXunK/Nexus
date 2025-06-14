@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
  */
 @Data
 public class FollowBO {
-    private Long followerId;
+    private Long userId;
     private Long followeeId;
     private LocalDateTime createTime;
 
     // 业务校验
     public void validate() {
-        if (followerId.equals(followeeId)) {
+        if (userId.equals(followeeId)) {
             throw new BusinessException("不能关注自己");
         }
     }

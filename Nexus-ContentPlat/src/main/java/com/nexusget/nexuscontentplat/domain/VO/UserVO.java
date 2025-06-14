@@ -12,7 +12,7 @@ public class UserVO {
     private String avatarUrl;
     private String selfIntroduce;
     private String socialInfo; // JSON字符串，存储社交链接
-
+    private String token; // 最新的token
     // 统计信息
     private Integer articleCount;
     private Integer followerCount;

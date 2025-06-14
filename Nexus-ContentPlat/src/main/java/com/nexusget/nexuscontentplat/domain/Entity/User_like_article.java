@@ -1,22 +1,25 @@
 package com.nexusget.nexuscontentplat.domain.Entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.nexusget.nexuscontentplat.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@TableName("user_follow_group")
+@TableName("user_like_article")
 @AllArgsConstructor
 @NoArgsConstructor
-public class user_follow_group {
+@EqualsAndHashCode(callSuper = true)
+public class User_like_article extends BaseEntity {
     @TableId(type = IdType.AUTO)
-    private Long follow_gp_id;
+    private Long liked_article_id;
     private Long user_id;
-    @TableField("name")
-    private String group_name;
-    private Integer is_default;
+    private Long article_id;
+    private String created_at;
+    private int is_canceled;
+    private String cancel_time;
 }

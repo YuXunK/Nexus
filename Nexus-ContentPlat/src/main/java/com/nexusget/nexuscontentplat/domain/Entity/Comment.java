@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class comment extends BaseEntity {
+public class Comment extends BaseEntity {
     @TableId(type = IdType.AUTO)
     private Long commentId;
     /**

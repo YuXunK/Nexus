@@ -1,4 +1,4 @@
-package com.nexusget.nexuscontentplat.common.Interceptor;
+package com.nexusget.nexuscontentplat.web.interceptor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

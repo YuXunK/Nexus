@@ -1,6 +1,6 @@
 package com.nexusget.nexuscontentplat.common.config;
 
-import com.nexusget.nexuscontentplat.common.Interceptor.SensitiveWordInterceptor;
+import com.nexusget.nexuscontentplat.web.interceptor.SensitiveWordInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.WebFluxConfigurer;

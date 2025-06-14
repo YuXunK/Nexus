@@ -7,15 +7,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author nexus
+ * 分类实体
+ */
+
 @Data
-@TableName("user_tag_relation")
+@TableName("category")
 @AllArgsConstructor
 @NoArgsConstructor
-public class user_tag_relation {
+public class Category {
     @TableId(type = IdType.AUTO)
-    private Long user_tag_rel_id;
-    private Long user_id;
-    private Long group_id;
-    private Long tag_id;
-    private String create_time;
+    private Long categoryId;
+    private String name;
 }

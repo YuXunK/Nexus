@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class article extends BaseEntity {
+public class Article extends BaseEntity {
     @TableId(type = IdType.AUTO)
     @TableField("article_id")
     private Long articleId;

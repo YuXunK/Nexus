@@ -9,15 +9,16 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author nexus
- * 分类实体
+ * 文章与tag关联信息
  */
 
 @Data
-@TableName("category")
+@TableName("article_tag")
 @AllArgsConstructor
 @NoArgsConstructor
-public class category {
+public class ArticleTag {
     @TableId(type = IdType.AUTO)
-    private Long categoryId;
-    private String name;
+    private Long articleTagId;
+    private Long articleId;
+    private Long tagId;
 }

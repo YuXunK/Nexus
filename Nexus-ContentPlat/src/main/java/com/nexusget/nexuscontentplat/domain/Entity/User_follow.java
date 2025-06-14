@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class user_follow extends BaseEntity {
+public class User_follow extends BaseEntity {
     @TableId(type = IdType.AUTO)
     private Long follow_recode_id;
     private Long user_id;
-    private Long followed_user_id;
+    private Long followee_id;
     private String created_at;
 }

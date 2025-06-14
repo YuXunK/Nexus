@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @TableName("user_follow_group_rel")
 @AllArgsConstructor
 @NoArgsConstructor
-public class user_follow_group_rel {
+public class User_follow_group_rel {
     @TableId(type = IdType.AUTO)
     private Long follow_rel_id;
     private Long group_id;

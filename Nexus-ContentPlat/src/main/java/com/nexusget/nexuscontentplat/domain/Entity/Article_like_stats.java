@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @TableName("article_like_stats")
 @AllArgsConstructor
 @NoArgsConstructor
-public class article_like_stats {
+public class Article_like_stats {
     private String article_id;
     private Integer like_count;
     private String last_updated_time;

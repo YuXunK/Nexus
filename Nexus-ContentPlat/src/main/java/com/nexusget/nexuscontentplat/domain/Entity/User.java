@@ -6,10 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.nexusget.nexuscontentplat.domain.BaseEntity;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @author nexus
@@ -18,11 +15,12 @@ import lombok.NoArgsConstructor;
  */
 
 @Data
+@Builder
 @TableName("user")
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class user extends BaseEntity {
+public class User extends BaseEntity {
     @TableId(type = IdType.AUTO)
     @TableField("user_id")
     private Long userId;
@@ -44,6 +42,10 @@ public class user extends BaseEntity {
      * 关联邮箱
      */
     private String email;
+    /**
+     * 关联手机
+     */
+    private String phone;
     /**
      * 密码
      */
