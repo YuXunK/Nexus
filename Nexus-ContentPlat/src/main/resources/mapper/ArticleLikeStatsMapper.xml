@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nexusget.nexuscontentplat.mapper.ArticleLikeStatsMapper">
+    <select id="selectLikeCountsByArticleIds" resultType="com.nexusget.nexuscontentplat.domain.Entity.Article_like_stats">
+        SELECT
+        article_id AS articleId,
+        like_count AS likeCount
+        FROM
+        article_like_stats
+        WHERE
+        article_id IN
+        <foreach collection="articleIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

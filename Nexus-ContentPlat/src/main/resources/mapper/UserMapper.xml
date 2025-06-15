@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nexusget.nexuscontentplat.mapper.UserMapper">
+    <select id="selectByIds" resultType="com.nexusget.nexuscontentplat.domain.Entity.User">
+        SELECT
+        user_id AS userId,
+        username,
+        avatar_url
+        FROM
+        user
+        WHERE
+        user_id IN
+        <foreach collection="userIds" item="userId" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </select>
+</mapper>
