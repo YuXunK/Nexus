@@ -20,6 +20,4 @@ public class User_like_article extends BaseEntity {
     private Long user_id;
     private Long article_id;
     private String created_at;
-    private int is_canceled;
-    private String cancel_time;
 }

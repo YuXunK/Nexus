@@ -70,4 +70,10 @@ public class Article extends BaseEntity {
      */
     @TableField("updated_at")
     private String updatedAt;
+
+    /**
+     * 是否为草稿 0--是 1--否
+     */
+    @TableField("is_draft")
+    private Integer isDraft;
 }

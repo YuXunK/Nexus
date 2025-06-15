@@ -18,8 +18,7 @@ import com.nexusget.nexuscontentplat.domain.Entity.*;
 import com.nexusget.nexuscontentplat.domain.VO.UserVO;
 import com.nexusget.nexuscontentplat.mapper.*;
 import com.nexusget.nexuscontentplat.service.AccessService;
-import com.nexusget.nexuscontentplat.service.userService;
-import io.jsonwebtoken.Claims;
+import com.nexusget.nexuscontentplat.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +28,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
-public class userServiceImpl implements userService {
+public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final JwtProvider jwtProvider;
     private final AccessService accessService;
@@ -42,7 +41,7 @@ public class userServiceImpl implements userService {
     private final UserLikeArticleMapper likeArticleMapper;
 
 
-    public userServiceImpl(UserMapper userMapper, JwtProvider jwtProvider, RedisTemplate<String,String> redisTemplate, UserFollowMapper userFollowMapper, AccessService accessService, UserFollowGroupMapper followGroupMapper, UserFollowGroupRelMapper followGroupRelMapper, UserTagGroupMapper tagGroupMapper, UserTagRelationMapper tagRelationMapper, UserLikeArticleMapper likeArticleMapper) {
+    public UserServiceImpl(UserMapper userMapper, JwtProvider jwtProvider, RedisTemplate<String,String> redisTemplate, UserFollowMapper userFollowMapper, AccessService accessService, UserFollowGroupMapper followGroupMapper, UserFollowGroupRelMapper followGroupRelMapper, UserTagGroupMapper tagGroupMapper, UserTagRelationMapper tagRelationMapper, UserLikeArticleMapper likeArticleMapper) {
         this.userMapper = userMapper;
         this.jwtProvider = jwtProvider;
         this.redisTemplate = redisTemplate;
@@ -137,7 +136,7 @@ public class userServiceImpl implements userService {
 
     @Override
     public void logout(String token) throws AuthException {
-        Long userId = paresTokenToGetId(token);
+        Long userId = jwtProvider.paresTokenToGetId(token);
 
         // 3. 删除Redis中的Token记录
         String redisKey = "user:token:" + userId;
@@ -156,14 +155,14 @@ public class userServiceImpl implements userService {
 
     @Override
     public void cancelAccount(String token) throws RuntimeException {
-        Long userId = paresTokenToGetId(token);
+        Long userId = jwtProvider.paresTokenToGetId(token);
         // 删除用户相关内容
         userMapper.deleteById(userId);
     }
 
     @Override
     public UserVO userMateInfo(String token) throws RuntimeException {
-        Long userId = paresTokenToGetId(token);
+        Long userId = jwtProvider.paresTokenToGetId(token);
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getUserId,userId);
 
@@ -173,7 +172,7 @@ public class userServiceImpl implements userService {
 
     @Override
     public boolean socialOrSelfInfoDIY(UserBO infoChange, String token) throws RuntimeException {
-        Long userId = paresTokenToGetId(token);
+        Long userId = jwtProvider.paresTokenToGetId(token);
         LambdaUpdateWrapper<User> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(User::getUserId,userId);
 
@@ -280,7 +279,7 @@ public class userServiceImpl implements userService {
     @Override
     public boolean createManualGroup(String token, String groupName, boolean groupType) throws RuntimeException {
         // 1. 从Token解析用户ID
-        Long userId = paresTokenToGetId(token);
+        Long userId = jwtProvider.paresTokenToGetId(token);
 
         // 2. 验证分组名称有效性
         if (!StringUtils.hasText(groupName) || groupName.length() > 20) {
@@ -317,7 +316,7 @@ public class userServiceImpl implements userService {
     public void changeContentGroup(String token, Long contentId,
                                    Long newGroupId, boolean groupType) {
         // 1. 从Token解析用户ID
-        Long userId = paresTokenToGetId(token);
+        Long userId = jwtProvider.paresTokenToGetId(token);
 
         // 2. 验证新分组归属
         if (!groupType) {
@@ -351,21 +350,5 @@ public class userServiceImpl implements userService {
         if (group == null || !((BaseGroupEntity)group).getUser_id().equals(userId)) {
             throw new BusinessException("目标分组不存在或无权操作");
         }
-    }
-
-    public Long paresTokenToGetId(String token) throws RuntimeException {
-        // 1. 校验Token格式
-        if (StringUtils.isEmpty(token) || !token.startsWith("Bearer ")) {
-            throw new AuthException("AUTH-400", "Token格式错误");
-        }
-
-        // 2. 解析Token获取用户ID
-        Claims claims;
-        try {
-            claims = jwtProvider.parseToken(token);
-        } catch (Exception e) {
-            throw new AuthException("AUTH-401", "Token解析失败");
-        }
-        return Long.parseLong(claims.getSubject());
     }
 }

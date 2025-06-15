@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @descrpition 用户操作模块
  */
 @Service
-public interface userService {
+public interface UserService {
 
     /**
      * @author nexus 25-6-12 1:44

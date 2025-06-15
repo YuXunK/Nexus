@@ -24,17 +24,9 @@ public class Comment extends BaseEntity {
     @TableId(type = IdType.AUTO)
     private Long commentId;
     /**
-     * 文章id
-     */
-    private Long articleId;
-    /**
      * 自定义文章id，暴露返回
      */
     private String custom_article_id;
-    /**
-     * 评论根id，用于嵌套回复
-     */
-    private Long root_id;
     /**
      * 评论父id，null表示一级评论
      */

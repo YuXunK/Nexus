@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class ArticleListVO {
-    private Long id;
+    private String id;
     private String title;
     private String excerpt;
     private String createTime; // 格式化后的时间字符串
@@ -26,7 +26,6 @@ public class ArticleListVO {
     @Data
     public static class StatsVO {
         private Integer likeCount;
-        private Integer favoriteCount;
     }
 
     // 转换方法
@@ -45,7 +44,6 @@ public class ArticleListVO {
 
         StatsVO stats = new StatsVO();
         stats.setLikeCount(bo.getLikeCount());
-        stats.setFavoriteCount(bo.getFavoriteCount());
         vo.setStats(stats);
 
         return vo;

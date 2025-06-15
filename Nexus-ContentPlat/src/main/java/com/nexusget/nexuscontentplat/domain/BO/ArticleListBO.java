@@ -9,16 +9,17 @@ import java.time.LocalDateTime;
  */
 @Data
 public class ArticleListBO {
-    private Long articleId;
+    private String articleId;
     private String title;
     private String excerpt;
     private String excerpt_img;
     private LocalDateTime createdAt;
     private Long userId;
+    /*用户关联信息*/
     private String username;
     private String avatarUrl;
+    /*文章关联信息*/
     private Integer likeCount;
-    private Integer favoriteCount;
 
     // 业务方法
     public boolean isPopular() {

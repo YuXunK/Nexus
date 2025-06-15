@@ -10,6 +10,6 @@ public interface UserLikeArticleMapper extends BaseMapper<User_like_article> {
     /**
      * 查询所有有效的喜欢记录（未取消的）
      */
-    @Select("SELECT * FROM user_like_article WHERE is_canceled = 0")
+    @Select("SELECT * FROM user_like_article")
     List<User_like_article> selectActiveLikes();
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class ArticleDetailVO {
     //=== 文章核心信息 ===//
-    private Long id;
+    private String custom_id;
     private String title;
     private String content;
     private String createTime;
@@ -26,21 +26,18 @@ public class ArticleDetailVO {
     private Integer totalComments; // 评论总数（用于分页）
 
     //=== 嵌套VO定义 ===//
-
+    // AuthorVO 就是文章id相关的user基础信息
     @Data
     public static class AuthorVO {
         private Long userId;
         private String username;
         private String avatarUrl;
-        private String bio;
     }
-
+    // 点赞统计和判断当前用户是否点赞的判定符
     @Data
     public static class StatsVO {
         private Integer likeCount;
-        private Integer favoriteCount;
         private Boolean isLiked;     // 当前用户是否点赞
-        private Boolean isFavorite; // 当前用户是否收藏
     }
 
     /**

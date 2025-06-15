@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Article_like_stats {
-    private String article_id;
+    private String custom_article_id;
     private Integer like_count;
     private String last_updated_time;
 }

@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 public class ArticleDetailBO {
-    private Long articleId;
+    private String article_custom_id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
@@ -24,7 +24,6 @@ public class ArticleDetailBO {
         private Long userId;
         private String username;
         private String avatarUrl;
-        private String selfIntroduce;
     }
 
     @Data

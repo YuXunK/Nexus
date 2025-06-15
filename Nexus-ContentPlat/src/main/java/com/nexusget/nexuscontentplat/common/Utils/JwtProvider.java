@@ -88,4 +88,20 @@ public class JwtProvider {
         }
         throw new AuthException("Token格式错误，必须以Bearer开头");
     }
+
+    public Long paresTokenToGetId(String token) throws RuntimeException {
+        // 1. 校验Token格式
+        if (StringUtils.isEmpty(token) || !token.startsWith("Bearer ")) {
+            throw new com.nexusget.nexuscontentplat.common.excption.AuthException("AUTH-400", "Token格式错误");
+        }
+
+        // 2. 解析Token获取用户ID
+        Claims claims;
+        try {
+            claims = parseToken(token);
+        } catch (Exception e) {
+            throw new com.nexusget.nexuscontentplat.common.excption.AuthException("AUTH-401", "Token解析失败");
+        }
+        return Long.parseLong(claims.getSubject());
+    }
 }
